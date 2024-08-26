@@ -9,16 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        SignUpView()
     }
 }
 
 #Preview {
     ContentView()
+}
+
+struct TextFieldView: View {
+    var textLabel: String
+    @Binding var txt: String
+    var body: some View {
+        VStack {
+            if textLabel == "Password" {
+                SecureField(textLabel, text: $txt)
+                    .autocorrectionDisabled()
+            }
+            else {
+                TextField(textLabel, text: $txt)
+            }
+        }
+        .padding()
+        .overlay {
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(lineWidth: 1)
+            
+        }
+    }
 }
